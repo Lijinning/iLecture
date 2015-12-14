@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+	<title>iLecture - Student</title>
+	<link rel="stylesheet" href="../lib/style/reset.css">
+	<link rel="stylesheet" href="../lib/style/semantic.min.css">
+	<link rel="stylesheet" href="../lib/style/jquery.mCustomScrollbar.css">
+	<link rel="stylesheet" href="./style/index.mobile.css" media="screen and (max-width: 980px)">
+	<link rel="stylesheet" href="./style/index.desktop.css" media="screen and (min-width: 981px)">
+</head>
+<body class="blur">
+	<article id="blur-overlay"><div><div><i class="loading icon"></i></div></div></article>
+	<header id="header">
+		<nav>
+			<div class="logo">iLecture</div>
+		</nav>
+	</header>
+	<nav id="navigation">
+		<div>
+			<section class="mobile">
+				<div _nav="roomMessage" class="active item"><i class="chat outline icon"></i></div>
+				<div _nav="roomQues" class="item"><i class="question icon"></i></div>
+				<div _nav="roomResult" class="item"><i class="checked checkbox icon"></i></div>
+			</section>
+		</div>
+		<footer>
+			<div></div>
+		</footer>
+	</nav>
+	<article id="container">
+		<div>
+			<section id="roomQues" class="null" _type="single" _sel="2">
+				<div>
+					<nav>
+						<div class="item null">
+							<div class="title">No Question</div>
+						</div>
+						<div class="item">
+							<div class="left">Question</div>
+							<div class="type">Never asked</div>
+							<div class="right title">No title</div>
+						</div>
+						<div class="item">
+							<div class="left selection">Selections</div>
+							<div class="right selection" style="padding: 0;" _num="2">
+								<div class="sel-item dynamic" _answer="1">A</div>
+								<div class="sel-item dynamic" _answer="2">B</div>
+								<div class="sel-item dynamic" _answer="3">C</div>
+								<div class="sel-item dynamic" _answer="4">D</div>
+								<div class="sel-item dynamic" _answer="5">E</div>
+								<div class="sel-item dynamic" _answer="6">F</div>
+								<div class="sel-item checked" _answer="0">Fine</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="answer ui button">Ask</div>
+							<div class="answered ui button">Asked</div>
+						</div>
+					</nav>
+				</div>
+			</section>
+			<section id="roomResult" class="null">
+				<div>
+					<nav>
+						<div class="item null">
+							<div class="title">No Result</div>
+						</div>
+						<div class="item">
+							<div class="left">>No title</div>
+							<div class="type">Never asked</div>
+							<div class="chart">
+								<div><canvas id="barCanvas"></canvas></div>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</section>
+			<section id="roomMessage" class="active">
+				<div class="overlay"></div>
+				<nav class="posting">
+					<div class="title-speed">Learning Speed</div>
+					<section id="speed">
+						<div class="posting-wrapper">
+							<div class="posting-slide" _speed="-3">
+								<img src="../image/speed_-3.png">
+							</div>
+							<div class="posting-slide" _speed="-2">
+								<img src="../image/speed_-2.png">
+							</div>
+							<div class="posting-slide" _speed="-1">
+								<img src="../image/speed_-1.png">
+							</div>
+							<div class="posting-slide" _speed="0">
+								<img src="../image/speed_0.png">
+							</div>
+							<div class="posting-slide" _speed="1">
+								<img src="../image/speed_1.png">
+							</div>
+							<div class="posting-slide" _speed="2">
+								<img src="../image/speed_2.png">
+							</div>
+							<div class="posting-slide" _speed="3">
+								<img src="../image/speed_3.png">
+							</div>
+						</div>
+					</section>
+					<div class="title-mood">Learning Situation</div>
+					<section id="mood">
+						<div class="posting-wrapper">
+							<div class="posting-slide" _mood="-3">
+								<img src="../image/mood_-3.png">
+							</div>
+							<div class="posting-slide" _mood="-2">
+								<img src="../image/mood_-2.png">
+							</div>
+							<div class="posting-slide" _mood="-1">
+								<img src="../image/mood_-1.png">
+							</div>
+							<div class="posting-slide" _mood="0">
+								<img src="../image/mood_0.png">
+							</div>
+							<div class="posting-slide" _mood="1">
+								<img src="../image/mood_1.png">
+							</div>
+							<div class="posting-slide" _mood="2">
+								<img src="../image/mood_2.png">
+							</div>
+							<div class="posting-slide" _mood="3">
+								<img src="../image/mood_3.png">
+							</div>
+						</div>
+					</section>
+				</nav>
+				<nav class="user" style="height: 120px;">
+					<div id="show-sId" class="title"></div>
+					<div class="wrapper-left"><input type="input" placeholder="type your name..."></div>
+					<div class="wrapper-right">OK</div>
+				</nav>
+				<section>
+					<div id="show-message">
+						<!-- Messages's Logs -->
+						<div class="null">No Message</div>
+					</div>
+				</section>
+				<footer>
+					<div id="user_btn" class="button user">
+						<i class="user icon"></i>
+					</div>
+					<div class="input">
+						<input type="input" placeholder="type your message...">
+					</div>
+					<div id="posting_btn" class="button posting">
+						<i class="smile icon"></i>
+					</div>
+					<div id="text_btn" class="button text">
+						<i class="comment icon"></i>
+					</div>
+				</footer>
+			</section>
+		</div>
+	</article>
+	<script src="../lib/js/firebase.js"></script>
+	<script src="../lib/js/get-type.params.min.js"></script>
+	<script src="../lib/js/timestamp.min.js"></script>
+	<script src="./js/db.js"></script>
+
+	<script src="../lib/js/jquery-2.1.1.min.js"></script>
+	<script src="../lib/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script src="../lib/js/jquery.address.js"></script>
+	<script src="../lib/js/semantic.min.js"></script>
+	<script src="../lib/js/viewport.min.js"></script>
+	<script src="../lib/js/Chart.min.js"></script>
+	<script src="./js/index.js"></script>
+	<script>
+		(function(_GET, sInfo){
+			var o_sInfo = JSON.parse(sInfo), roomId = _GET['room_id'] || null, roomCode = _GET['code'] || null;
+			if( roomId === null || roomCode === null ){
+				alert('Parameter is missing.');
+				localStorage.removeItem('sInfo');
+				localStorage.removeItem('slatestQuesInfo');
+				window.location.replace('../error/index.html');
+				return 0;
+			}
+			if( o_sInfo === null || o_sInfo.roomId !== roomId || o_sInfo.roomCode !== roomCode ){  // 重新建立 Student 資訊
+				if( confirm('The browser has another classroom information, do you want to enter this classroom, and then forced to close another classroom ?') ){
+					console.log('重新建立 Student 資訊');
+					o_sInfo = {};
+					o_sInfo.sId = 's_'+randomInt(1, 100);
+					o_sInfo.roomId = roomId;
+					o_sInfo.roomCode = roomCode;
+					o_sInfo.question = 'null';
+					o_sInfo.params = 'room_id='+roomId+'&code='+roomCode;
+					localStorage.setItem('sInfo', JSON.stringify(o_sInfo));
+					setStudentId(o_sInfo, 1);
+				}else{
+					window.location.replace('../error/index.html');
+					return 0;
+				}
+			}else{ // localStorage 有值，且跟 GET 參數相符合，則不用重新建立 Student 資訊
+				setStudentId(o_sInfo, 0);
+			}
+		})(getUrlVars(), localStorage.sInfo || 'null');
+	</script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+@import url(../../lib/fonts/init.css);
+@font-face{
+font-family:Icons;src:url(../../lib/fonts/icons.eot);
+src: url(../../lib/fonts/icons.eot?#iefix) format('embedded-opentype')
+, url(../../lib/fonts/icons.svg#icons) format('svg')
+, url(../../lib/fonts/icons.woff) format('woff')
+, url(../../lib/fonts/icons.ttf) format('truetype');
+font-style:normal;
+font-weight:400;
+font-variant:normal;
+text-decoration:inherit;
+text-transform:none }
+@keyframes icon-loading{
+	from{
+		-webkit-transform:rotate(0deg);
+		-moz-transform:rotate(0deg);
+		-ms-transform:rotate(0deg);
+		transform:rotate(0deg)
+	}to{
+		-webkit-transform:rotate(360deg);
+		-moz-transform:rotate(360deg);
+		-ms-transform:rotate(360deg);
+		transform:rotate(360deg) }
+}
+@-moz-keyframes icon-loading{
+	from{
+		-moz-transform:rotate(0deg);
+		transform:rotate(0deg)
+	}to{
+		-moz-transform:rotate(360deg);
+		transform:rotate(360deg) }
+}
+@-webkit-keyframes icon-loading{
+	from{
+		-webkit-transform:rotate(0deg);
+		transform:rotate(0deg)
+	}to{
+		-webkit-transform:rotate(360deg);
+		transform:rotate(360deg) }
+}
+@-ms-keyframes icon-loading{
+	from{
+		-ms-transform:rotate(0deg);
+		transform:rotate(0deg)
+	}to{
+		-ms-transform:rotate(360deg);
+		transform:rotate(360deg) }
+}
+html, body {
+height: 100%;
+}
+body {
+font: normal 100% Helvetica, Arial, sans-serif;
+font-family: "Helvetica Neue", Helvetica, Arial, "微軟正黑體", sans-serif;
+color: white;
+background: url(../../image/desktop-Background.jpg);
+background-size: 100% 100%; }
+h3{
+color: rgb(78, 48, 48);	
+}
+@media only screen and (max-width : 980px){
+body {
+background: url(../../image/mobile-Background.jpg);
+background-size: 100% 100%; }
+}
+i.icon.loading:before {
+content: "\f110"; }
+
+#container{
+position: fixed;
+top: 0;
+left: 0;
+bottom: 0;
+right: 0; 
+text-align: center;
+margin-top: 30px;
+font-size: 22px;
+}

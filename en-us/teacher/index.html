@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+	<title>iLecture - Teacher</title>
+	<link rel="stylesheet" href="../lib/style/reset.css">
+	<link rel="stylesheet" href="../lib/style/semantic.min.css">
+	<link rel="stylesheet" href="./style/index.mobile.css" media="screen and (max-width: 980px)">
+	<link rel="stylesheet" href="./style/index.desktop.css" media="screen and (min-width: 981px)">
+</head>
+<body class="blur">
+	<article id="blur-overlay"><div><div><i class="loading icon"></i></div></div></article>
+	<header id="header">
+		<nav>
+			<div class="logo">iLecture</div>
+		</nav>
+	</header>
+	<nav id="navigation">
+		<div>
+			<section class="mobile">
+				<div _nav="roomInfo" class="active item"><i class="info letter icon"></i></div>
+				<div _nav="roomLink" class="item"><i class="url icon"></i></div>
+				<div _nav="roomQues" class="item"><i class="question icon"></i></div>
+				<div _nav="roomResult" class="item"><i class="checked checkbox icon"></i></div>
+				<div _nav="roomMessage" class="item"><i class="chat icon"></i></div>
+			</section>
+		</div>
+		<footer>
+			<div></div>
+		</footer>
+	</nav>
+	<article id="container">
+		<div>
+			<section id="roomQues" _type="single" _sel="2">
+				<div>
+					<nav>
+						<div class="item">
+							<div class="left">Question</div>
+							<div class="right input"><input id="title_input" type="input" placeholder="type your question..."></div>
+						</div>
+						<div class="item">
+							<div class="left selection">Selections</div>
+							<div class="right selection" style="padding: 0;">
+								<div class="sel-item active" _sel="2">2</div>
+								<div class="sel-item" _sel="3">3</div>
+								<div class="sel-item" _sel="4">4</div>
+								<div class="sel-item" _sel="5">5</div>
+								<div class="sel-item" _sel="6">6</div>
+							</div>
+						</div>
+						<div class="item type">
+							<div class="left single active" _type="single">Single</div>
+							<div class="right multiple" _type="multiple">Multiple</div>
+						</div>
+						<div class="item">
+							<div class="ask ui button">Ask</div>
+						</div>
+					</nav>
+				</div>
+			</section>
+			<section id="roomResult" class="null">
+				<div>
+					<nav>
+						<div class="item null">
+							<div class="title">No Result</div>
+						</div>
+						<div class="item">
+							<div class="left">No title</div>
+							<div class="type">Never asked</div>
+							<div class="chart">
+								<div><canvas id="barCanvas"></canvas></div>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</section>
+			<section id="roomInfo" class="active">
+				<div>
+					<nav>
+						<div class="item">
+							<div class="left">Numbers of People</div>
+							<div class="chart">
+								<div class="chart-canvas" data-percent="100"></div>
+								<div id="show-onlineNum" class="chart-number">0</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="left">Learning Speed</div>
+							<div class="chart" pieChart="speed">
+								<div class="chart-canvas" data-percent="0"></div>
+								<div class="chart-number">0%</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="left">Learning Situation</div>
+							<div class="chart" pieChart="mood">
+								<div class="chart-canvas" data-percent="0"></div>
+								<div class="chart-number">0%</div>
+							</div>
+						</div>
+					</nav>
+				</div>
+			</section>
+			<section id="roomLink">
+				<div>
+					<nav id="roomLink_btn">
+						<div>
+							<i class="url icon"></i>Connection
+						</div>
+					</nav>
+					<nav>
+						<div class="item">
+							<div class="left">via PinCode</div>
+							<div id="show-roomCode" class="right"></div>
+						</div>
+						<div class="item">
+							<div class="left">via URL</div>
+							<div id="show-roomLink" class="right"><a target="_blank"></a></div>
+						</div>
+						<div class="item">
+							<div class="left">via QR Code</div>
+							<div id="show-qrCode" class="right"></div>
+						</div>
+						<div class="back">
+							<i class="home icon"></i>Back
+						</div>
+					</nav>
+				</div>
+			</section>
+			<section id="roomMessage">
+				<section>
+					<div id="show-message">
+						<!-- Messages's Logs -->
+						<div class="null">No Message</div>
+					</div>
+				</section>
+				<footer>
+					<div class="input">
+						<input type="input" placeholder="type your message...">
+					</div>
+					<div id="text_btn" class="button text">
+						<i class="comment icon"></i>
+					</div>
+				</footer>
+			</section>
+		</div>
+	</article>
+	<script src="../lib/js/firebase.js"></script>
+	<script src="../lib/js/get-type.params.min.js"></script>
+	<script src="./js/db.js"></script>
+
+	<script src="../lib/js/jquery-2.1.1.min.js"></script>
+	<script src="../lib/js/jquery.address.js"></script>
+	<script src="../lib/js/semantic.min.js"></script>
+	<script src="../lib/js/qrCode.min.js"></script>
+	<script src="../lib/js/jquery.easypiechart.min.js"></script>
+	<script src="../lib/js/jquery.urlshortener.min.js"></script>
+	<script src="../lib/js/timestamp.min.js"></script>
+	<script src="../lib/js/viewport.min.js"></script>
+	<script src="../lib/js/Chart.min.js"></script>
+	<script src="./js/index.js"></script>
+	<script>
+		(function(_GET, tInfo){
+			var o_tInfo = JSON.parse(tInfo), roomId = _GET['room_id'] || null, roomCode = _GET['code'] || null, roomAuth = _GET['auth'];
+			if( roomId === null || roomCode === null || roomAuth === null ){
+				alert('Parameter is missing.');
+				localStorage.removeItem('tInfo');
+				localStorage.removeItem('tlatestQuesInfo');
+				window.location.replace('../error/index.html');
+				return 0;
+			}
+			if( o_tInfo === null || o_tInfo.roomId !== roomId || o_tInfo.roomCode !== roomCode ){  // 重新建立 Teacher 資訊
+				if( confirm('The browser has another classroom information, do you want to open this classroom, and then forced to close another classroom ?') ){
+					console.log('重新建立 Teacher 資訊');
+					o_tInfo = {};
+					o_tInfo.roomId = roomId;
+					o_tInfo.roomCode = roomCode;
+					o_tInfo.online_s = 0;
+					o_tInfo.question = 'null';
+					localStorage.setItem('tInfo', JSON.stringify(o_tInfo));
+				}else{
+					window.location.replace('../error/index.html');
+					return 0;
+				}
+			}
+			// localStorage 有值，且跟 GET 參數相符合，則不用重新建立 Teacher 資訊
+			checkAuth(o_tInfo, roomAuth);
+		})(getUrlVars(), localStorage.tInfo || 'null');
+	</script>
+</body>
+</html>

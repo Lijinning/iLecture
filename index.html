@@ -1,0 +1,60 @@
+<!DOCTYPE HTML> 
+<html lang="zh-TW">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+	<title>iLecture</title>
+	<link rel="stylesheet" href="./lib/style/reset.css">
+	<link rel="stylesheet" href="./lib/style/idangerous.swiper.css">
+	<link rel="stylesheet" href="./index.css"/>
+</head>
+<body id="body" class="tw">
+	<article id="blur-overlay"><div><div><i class="loading icon"></i></div></div></article>
+	<article id="container">
+		<div class="swiper-container swiper-nested-1">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide slide-1">
+					<div class="content">
+						<div class="inner">
+							<div class="title">iLecture</div>
+							<div class="sub-title">An instant online classroom</div>
+						</div>
+					</div>
+				</div>
+				<div class="swiper-slide slide-2">
+					<div class="content">
+						<div class="inner">
+							<div class="title">iLecture</div>
+							<div class="sub-title">An interactive discussion platform</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="content">
+				<div class="button">
+					<div id="create-room"><div>Open a classroom</div></div>
+					<div id="enter-room"><div>Enter a classroom</div></div>
+				</div>
+			</div>
+			<div class="pagination"></div>
+		</div>
+	</article>
+	<script src="./lib/js/firebase.js"></script>
+	<script src="./lib/js/jquery-2.1.1.min.js"></script>
+	<script src="./lib/js/jquery.password.js"></script>
+	<script src="./lib/js/timestamp.min.js"></script>
+	<script src="./lib/js/idangerous.swiper.min.js"></script>
+	<script src="./index.js"></script>
+	<script>
+		var mySwiper = new Swiper('.swiper-nested-1',{
+			pagination: '.pagination',
+			paginationClickable: true,
+			keyboardControl:true,
+			loop:true,
+			mode:'horizontal',
+			autoplay:6000,
+			speed : 1000
+		})
+	</script>
+</body>
+</html>
