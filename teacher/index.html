@@ -187,7 +187,7 @@
 				window.location.replace('../error/index.html');
 				return 0;
 			}
-			if( o_tInfo === null || o_tInfo.roomId !== roomId || o_tInfo.roomCode !== roomCode ){  // 重新建立 Teacher 資訊
+			if( o_tInfo === null || o_tInfo.roomId !== roomId || o_tInfo.roomCode !== roomCode ){// rebuild Teacher  information
 				if( confirm('瀏覽器有另一間教室的資訊，您確定要開啟這間教室，然後強制關閉另一間教室嗎？') ){
 					console.log('重新建立 Teacher 資訊');
 					o_tInfo = {};
