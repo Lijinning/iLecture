@@ -2,7 +2,7 @@ var myRootRef = new Firebase('https://ilecture.firebaseio.com/');
 
 myRootRef.child('rooms').once('value', function(data1){
 	console.log(data1.val());
-	// 清除超過 3天 的 rooms
+	// clear rooms more than three days
 	var now = timestamp.get().num;
 	for( var key in data1.val() ){
 		if( Math.abs( now - parseInt(key.substr(5)) ) > 86400000*7*20 ){
@@ -26,7 +26,7 @@ $(document).on('click', '#create-room', function(){
 	var roomId = 'room_' + timestamp.get().num, roomCode = $.password(4), authNumber = RandomNumber(10);
 	myRootRef.child('codes').once('value', function(data){
 		var a = data.val() || null;
-		if( a === null ){  // codes 不存在
+		if( a === null ){  // codes not found
 			var ary = [roomCode];
 		}else{
 			var ary = JSON.parse( a.array ), num = ary.indexOf(roomCode);
@@ -57,7 +57,7 @@ $(document).on('click', '#create-room', function(){
 	});
 });
 
-// 產生 auth 亂數
+// rebuild auth random number
 function RandomNumber(num){
     var ary = new Array("0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"), Str = '';
     for ( var i=1; i<=num; i++ ){
