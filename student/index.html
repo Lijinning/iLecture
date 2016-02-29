@@ -183,7 +183,7 @@
 				window.location.replace('../error/index.html');
 				return 0;
 			}
-			if( o_sInfo === null || o_sInfo.roomId !== roomId || o_sInfo.roomCode !== roomCode ){  // rebuild link
+			if( o_sInfo === null || o_sInfo.roomId !== roomId || o_sInfo.roomCode !== roomCode ){  // 重新建立 Student 資訊
 				if( confirm('瀏覽器有另一間教室的資訊，您確定要進入這間教室，然後強制關閉另一間教室嗎？') ){
 					console.log('重新建立 Student 資訊');
 					o_sInfo = {};

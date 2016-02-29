@@ -170,7 +170,7 @@
 				window.location.replace('../error/index.html');
 				return 0;
 			}
-			if( o_tInfo === null || o_tInfo.roomId !== roomId || o_tInfo.roomCode !== roomCode ){  // rebuild link
+			if( o_tInfo === null || o_tInfo.roomId !== roomId || o_tInfo.roomCode !== roomCode ){  // 重新建立 Teacher 資訊
 				if( confirm('The browser has another classroom information, do you want to open this classroom, and then forced to close another classroom ?') ){
 					console.log('重新建立 Teacher 資訊');
 					o_tInfo = {};
@@ -184,7 +184,7 @@
 					return 0;
 				}
 			}
-			// If localStorage has value and equal to GET's, don't need to rebuild link
+			// localStorage 有值，且跟 GET 參數相符合，則不用重新建立 Teacher 資訊
 			checkAuth(o_tInfo, roomAuth);
 		})(getUrlVars(), localStorage.tInfo || 'null');
 	</script>
